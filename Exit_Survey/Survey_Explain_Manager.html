@@ -1,0 +1,140 @@
+{{ block title }}
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<link rel="stylesheet" href="{{static 'css/mgslider.css'}}">
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/mgslider.js' }}"></script>
+
+<style>
+input[name="Belief_Round2"] {
+  width: 100px;
+  box-sizing: border-box;
+}
+</style>
+
+<div class="content-box box-info">
+
+  <!-- Header -->
+  <div class="section-header text-center">
+    <!-- Make titles dynamic basedon percentage? -->
+    <h3>Survey 2/3</h3>
+    <hr class="section-divider">
+  </div>
+
+
+
+  <!-- Slider Inputs -->
+  <div class="section-box-nonhover box-white">
+    <div class="section-header ">
+      <div class="section-box-nonhover box-info" style="padding:10px; border-radius:8px;">
+        <p>
+        <form method="post">
+                <strong>How do you think the
+                  {{ if player.participant.Treatment != 5 }}Manager{{ endif }}
+                  {{ if player.participant.Treatment == 5 }}Recruiter{{ endif }}
+                  made their selection?</strong>
+                  <br>
+                  {{ form.Manager_Selection }}
+
+        </p>
+      </div>   
+    <div class="section-box-nonhover box-info" style="padding:10px; border-radius:8px;">
+      <p>
+            <strong>How do you think you could have improved your chances of being selected?</strong>
+            <br><small>(Please rate each item.)</small>
+          </p>
+      <div class="mb-3">
+        <label><em>Different Mix of sets in Round 2 for you</em></label><br>
+        {{ formfield 'Improve_Selection_Mix_Scale' label=''  }}
+      </div>
+
+      <div class="mb-3">
+        <label><em>Different Avatar</em></label><br>
+        {{ formfield 'Improve_Selection_Avatar_Scale' label=''  }}
+
+        <div id="avatar_explain_wrap" style="margin-top:8px; display:none;">
+          <label for="id_Improve_Selection_Avatar_Text">
+            <em>Please briefly describe how the avatar would have needed to differ:</em>
+          </label>
+          {{ formfield 'Improve_Selection_Avatar_Text' label=''  }}
+        </div>
+      </div>
+
+      <div class="mb-1">
+        <label><em>Higher score in Round 2</em></label><br>
+        {{ formfield 'Improve_Selection_Score_Scale' label=''  }}
+      </div>
+    </div>
+
+
+
+
+
+<!-- Hidden Fields -->
+<div style="display:none">
+  {% for field in form %}
+    {% if field.name in hidden_fields %}
+      {{ formfield field.name }}
+    {% endif %}
+  {% endfor %}
+</div>
+
+
+<!-- Buttons -->
+<div class="buttons-container">
+
+
+
+  <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+</div>
+</div>
+
+
+<!-- Modals -->
+<div id="myModal2" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Task Instructions</h2>
+      <span class="close" onclick="span_click(2)">&times;</span>
+    </div>
+    <div class="modal-body">
+
+    </div>
+  </div>
+</div>
+<div id="myModal1" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Study Instructions</h2>
+      <span class="close" onclick="span_click(1)">&times;</span>
+    </div>
+    <div class="modal-body">
+      {{ include Instructions_path }}
+    </div>
+  </div>
+</div>
+
+</form>
+<script>
+  (function(){
+    const nameAvatar = 'Improve_Selection_Avatar_Scale';
+    const wrap = document.getElementById('avatar_explain_wrap');
+
+    function updateAvatarExplain(){
+      const selected = document.querySelector(`input[name="${nameAvatar}"]:checked`);
+      if (!selected) { wrap.style.display = 'none'; return; }
+      // Show for 3+ ("Somewhat", "Quite a bit", "A lot")
+      wrap.style.display = (parseInt(selected.value, 10) >= 3) ? 'block' : 'none';
+    }
+
+    document.addEventListener('change', function(e){
+      if (e.target && e.target.name === nameAvatar) updateAvatarExplain();
+    });
+    updateAvatarExplain(); // on load
+  })();
+</script>
+{{ endblock }}

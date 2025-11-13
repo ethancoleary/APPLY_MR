@@ -1,0 +1,19 @@
+{% load static %}
+{% extends "global/WaitPage.html" %}
+
+{% block title %}Matching you with another participant…{% endblock %}
+
+{% block content %}
+<!-- ── hidden inputs for data-quality logging ── -->
+<input type="hidden" id="id_browser"      name="browser">
+<input type="hidden" id="id_blur_count"   name="blur_count"  value="0">
+<input type="hidden" id="id_blur_log"     name="blur_log">
+<input type="hidden" id="id_blur_warned"  name="blur_warned" value="0">
+
+<!-- load the data-quality script AFTER the inputs -->
+<script src="{% static 'js/data_quality.js' %}"></script>
+
+<p class="lead text-center mt-4">
+  Please hold on – we are pairing you with another participant. It takes at most 60 seconds.
+</p>
+{% endblock %}

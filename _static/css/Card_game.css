@@ -1,0 +1,103 @@
+/* * {
+	margin: 0;
+	padding: 0;
+} */
+
+#picbox {
+	margin: 0px auto;
+	width: 640px;
+}
+
+
+
+#boxcard {
+  display: grid;
+  grid-template-columns: repeat(4, 200px);
+  grid-gap: 10px;
+  justify-content: center;  /* center the grid tracks within the container */
+}
+
+#boxcard {
+	display: grid;
+	grid-template-columns: 200px 200px 200px 200px; /* Adjust to change margins */
+	grid-column-gap: 0;
+}
+
+#boxcard > div {
+  width: 180px;
+  height: 180px;
+  /*background: #fff;         /* the “whitespace” */
+  /*border: 1px solid #ddd;   /* optional outline */
+  border-radius: 8px;       /* optional */
+  display: grid;
+  place-items: center;      /* centers the <img> perfectly */
+  overflow: hidden;         /* keeps image inside the box */
+  margin: 5px;
+  padding: 5px;
+  border: 4px solid #007BFF;
+  cursor: pointer;
+  box-shadow: 0 1px 5px rgba(0,0,0,.5);
+  background: #e6f7ff; 
+  z-index: 1;
+}
+
+/* The image itself */
+#boxcard > div img {
+  max-width: 95%;           /* adds equal space on all sides */
+  max-height: 95%;
+  object-fit: contain;
+  display: none;            /* critical: removes bottom whitespace bug */
+  margin: auto;                /* matches your slideDown/slideUp behavior */
+}
+
+   
+
+/*#boxcard div{
+	float: left;
+	width: 150px; /* original 121px 
+	height: 150px; /* original 135px 
+	margin: 5px;
+	padding: 5px;
+	border: 4px solid #007BFF;
+	cursor: pointer;
+	border-radius: 10px;
+	box-shadow: 0 1px 5px rgba(0,0,0,.5);
+  background: #e6f7ff; 
+	z-index: 1;
+}
+#boxcard div img {
+	display: none;
+	border-radius: 10px;
+	z-index: 3;
+}*/
+#boxbuttons {
+	text-align: center;
+	margin: 20px;
+	display: block;
+}
+#boxbuttons .button {
+	text-transform: uppercase;
+	background: #EE872A;
+	padding: 5px 10px;
+	margin: 5px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+#boxbuttons .button:hover {
+	background: #999;
+}
+
+
+
+
+
+/* Shake animation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.5s; /* Shake for 0.5 seconds */
+}

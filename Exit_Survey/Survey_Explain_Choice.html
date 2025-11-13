@@ -1,0 +1,100 @@
+{{ block title }}
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<link rel="stylesheet" href="{{static 'css/mgslider.css'}}">
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/mgslider.js' }}"></script>
+
+<style>
+input[name="Belief_Round2"] {
+  width: 100px;
+  box-sizing: border-box;
+}
+</style>
+
+<div class="content-box box-info">
+
+  <!-- Header -->
+  <div class="section-header text-center">
+    <!-- Make titles dynamic based on percentage? -->
+    <h3>Survey 1/3</h3>
+    <hr class="section-divider">
+  </div>
+
+  <div class="section-box-nonhover box-white">
+  <div class="section-header ">
+    <p>
+      Before beginning Round 3, you chose
+      <strong>Payment rule
+        {{ if player.participant.Choice == 1 }}A{{ endif }}
+        {{ if player.participant.Choice == 2 }}B{{ endif }}.
+      </strong>
+    </p>
+
+    <div class="box-neutral" style="margin: 8px 0; padding: 10px; border-radius: 8px;">
+      {{ if player.participant.Choice == 1 }}
+        <p class="mb-2"><em>Your choice:</em> <strong>Rule A</strong> — £{{ piece_rate }} per point you score.</p>
+      {{ endif }}
+      {{ if player.participant.Choice == 2 }}
+        <p class="mb-2"><em>Your choice:</em> <strong>Rule B</strong> — £{{ tournament_rate1 }} per point you score if the <strong>{{ selector_role }}</strong> selects you.</p>
+      {{ endif }}
+    </div>
+
+    <p>
+      Please briefly explain in your own words why you chose this payment rule and not the other.
+    </p>
+
+    {{ form.Explanation }}
+  </div>
+</div>
+
+
+
+
+<!-- Hidden Fields -->
+<div style="display:none">
+  {% for field in form %}
+    {% if field.name in hidden_fields %}
+      {{ formfield field.name }}
+    {% endif %}
+  {% endfor %}
+</div>
+
+<!-- Buttons -->
+<div class="buttons-container">
+
+
+
+  <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+</div>
+</div>
+
+<!-- Modals -->
+<div id="myModal2" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Task Instructions</h2>
+      <span class="close" onclick="span_click(2)">&times;</span>
+    </div>
+    <div class="modal-body">
+
+    </div>
+  </div>
+</div>
+<div id="myModal1" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Study Instructions</h2>
+      <span class="close" onclick="span_click(1)">&times;</span>
+    </div>
+    <div class="modal-body">
+      {{ include Instructions_path }}
+    </div>
+  </div>
+</div>
+
+{{ endblock }}

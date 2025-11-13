@@ -1,0 +1,75 @@
+{{ block title }}
+{{ endblock }}
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+
+
+<!-- 
+        <div class="section-box-nonhover box-success ">
+          <div class="section-header">    
+            <p>
+              Please read the instructions below carefully. On the next page there will be 3 questions to check whether you have understood the instructions.
+            </p>
+          </div>
+        </div> -->
+
+
+{{ include Instructions_path}}
+
+
+
+
+
+
+{% for field in form %}
+    {% if field.name not in hidden_fields %}
+        {{ formfield field.name }}
+    {% endif %}
+{% endfor %}
+
+<div style="display:none">
+    {% for field in form %}
+        {% if field.name in hidden_fields %}
+            {{ formfield field.name }}
+        {% endif %}
+    {% endfor %}
+</div>
+
+  <div class="buttons-container mt-4">
+    <div class="instructions-box">
+      <p class="instructions-title">Instruction Buttons</p>
+      <div class="Instructions">
+        <a onclick="open_modal(1)" class="otree-btn-next btn btn-primary">
+          Study Instructions
+        </a>
+      </div>
+    </div>
+    <button id="NextButton" class="otree-btn-next btn btn-primary">
+      Next
+    </button>
+  </div>
+
+
+
+
+<div id="myModal1" class="modal">
+  <div class="modal-content">
+      <div class="modal-header">
+        <h2>Instructions</h2>
+        <span class="close" onclick="span_click(1)">&times;</span>
+      </div>
+    <p style="padding: 0px">
+   {{include Instructions_path}}
+    </p>
+  </div>
+</div>
+
+<br><br>
+<div style="display: none;">
+    {{formfields}}
+</div>
+
+{{ endblock }}

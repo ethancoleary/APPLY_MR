@@ -1,0 +1,123 @@
+{{ block title }}
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<link rel="stylesheet" href="{{static 'css/mgslider.css'}}">
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/mgslider.js' }}"></script>
+
+<div class="content-box box-info">
+
+  <!-- Header -->
+  <div class="section-header text-center">
+    <!-- Make titles dynamic basedon percentage? -->
+    <h3>🎲 Page 1/4: Round 1</h3>
+    <hr class="section-divider">
+  </div>
+
+
+
+
+<!-- Payment Info -->
+<div class="section-box box-info">
+
+    <p>
+      If this page is selected for payment, you will earn the sum of your accumulated earnings over the 3 guesses.
+    </p>
+  <p>
+    In Round 1, all participants worked on easy sets for one minute, followed by hard sets for one minute.
+    You correctly found <strong>{{ player.participant.R1_score }} matching pairs </strong> in Round 1.
+  </p>
+  </div>
+
+  <div class="section-box box-white">
+<div class="section-header text-center">
+  <h4>Guess 1</h4>
+  </div>
+    <br>
+    <p>
+      Please choose a number. If your number falls <strong>between the Round 1 scores of two randomly selected
+      participants</strong> of the study (including you), you will earn £0.40.<br>
+      <center>
+    <img src="{% static 'graphics/Belief_Round1a.png' %}" height="150px"><br><br>
+    <form method="post">
+            <input
+                type="number"
+                name="Belief_Round1a"
+                required
+                min="1"
+                style="width:100px;"
+            >
+    </center>
+  </p>
+  </div>
+
+  <div class="section-box box-white">
+<div class="section-header text-center">
+  <h4>Guess 2</h4>
+  </div>
+    <br>
+    <p>
+      Please choose another number.
+      If your number is <strong>higher than the Round 1 scores of three randomly selected
+      participants</strong> of the study (including you) and lower than a fourth, you will earn £0.40.<br>
+      <center>
+      <img src="{% static 'graphics/Belief_Round1b.png' %}" height="150px"><br><br>
+            <input
+                type="number"
+                name="Belief_Round1b"
+                required
+                min="1"
+                style="width:100px;"
+            >
+    </center>
+  </p>
+  </div>
+
+<div class="section-box box-white">
+<div class="section-header text-center">
+  <h4>Guess 3</h4>
+  </div>
+    <br>
+    <p>
+      Please choose another number.
+      If your number is <strong>higher than the Round 1 scores of nine randomly selected
+      participants</strong> of the study (including you) and lower than a tenth, you will earn £0.40.<br>
+      <center>
+      <img src="{% static 'graphics/Belief_Round1c.png' %}" height="150px"><br><br>
+  <input
+                type="number"
+                name="Belief_Round1c"
+                required
+                min="1"
+                style="width:100px;"
+            >
+    </center>
+  </p>
+  </div>
+
+
+
+<div class="buttons-container">
+
+
+
+  <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+</div>
+</div>
+</form>
+<!-- Hidden Fields -->
+<div style="display:none">
+  {% for field in form %}
+    {% if field.name in hidden_fields %}
+      {{ formfield field.name }}
+    {% endif %}
+  {% endfor %}
+</div>
+
+
+
+{{ endblock }}

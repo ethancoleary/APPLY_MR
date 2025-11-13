@@ -1,0 +1,70 @@
+.slider-range-labels{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  font-size: 13px;
+  color: #aaa;
+}
+.slider-range-labels .label.bold-label {
+  font-weight: bold;
+  color: black; /* Change the text color for better visibility */
+}
+
+.label{
+  box-sizing: content-box;
+  flex: 0 1 200px; /* Adjust 200px to your desired width */
+}
+
+.slider-question{
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.slider-parent{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.slider-container {
+  text-align: center; /* Center-align the contents horizontally */
+  display: inline-block; /* Display as inline-block to make it as wide as its contents */
+  padding: 11px; /* Add padding for the box */
+  margin: 5px; /* Add some margins around the box */
+  border: 1px solid #000; /* Add a 1px black border for the box */
+  border-radius: 5px; /* Add rounded corners to the box */
+}
+  
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alert-move-sliders{
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  font-size: 20px;
+  font-weight: bold;
+  color: red;
+  font-weight: bold;
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}

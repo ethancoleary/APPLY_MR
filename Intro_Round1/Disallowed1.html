@@ -1,0 +1,29 @@
+{{ block title }}
+
+{{ endblock }}
+
+{{block content}}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+<br>
+<br>
+<br>
+<br>
+<pr>
+    Due to your responses, you cannot proceed with this study.
+    Click next to be redirected back to Prolific where you will be asked to return your submission.
+    If you do not return the submission, we will be forced to reject your submission.
+</pr>
+<br><br>
+<br>
+<br>
+
+    {{ next_button }}
+{{ endblock }}
+
+
+
+
+

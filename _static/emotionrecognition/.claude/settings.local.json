@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python resize_images.py:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(python process_all_folders.py:*)",
+      "Bash(python verify_dimensions.py:*)",
+      "Bash(python reduce_image_sizes.py:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

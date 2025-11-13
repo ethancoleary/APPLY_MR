@@ -1,0 +1,57 @@
+<!-- Bonus calculator stays the same, but replace the input for tokens with the slider -->
+<div id="calculator" style="text-align: center; margin: 0 auto;">
+    <h3>Calculator</h3>  
+    
+    <span id="calculator-top"><strong>Adjust parameters below to view potential bonus!</strong></span>
+
+
+    <!-- Bonus result table -->
+    <div id="bonusResult">
+        <table border="1" style="width: 100%; max-width: 400px; margin: 0 auto; text-align: center;">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Amount ($)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Total Bonus</strong></td>
+                    <td id="bonusDisplay"><strong></strong></td>
+                </tr>
+                <tr>
+                    <td>Piece-part</td>
+                    <td id="bonusDisplay_Piece"></td>
+                </tr>
+                <tr>
+                    <td>Tournament-part</td>
+                    <td id="bonusDisplay_Tournament"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="graph-container">
+            <canvas id="bonusBarChart"></canvas>
+            <p>Graph: Earnings in this scenario </p>
+        </div>
+    </div>
+    
+    <h3><br>Scenario Parameters</h3>  
+
+    <label for="rank">In this scenario, do you have <strong>the highest score</strong> in your group?</label>
+    <select id="rank">
+        <option value="nan">----</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+    </select>
+
+    <div id="score_slider"></div>        
+    <div id="calculator_slider"></div>
+    
+    <strong>Token allocation in this scenario</strong>    
+    <div id="charts">
+        <div class="chart-container">
+            <canvas id="investmentPieChart"></canvas>
+        </div>
+    </div>
+</div>

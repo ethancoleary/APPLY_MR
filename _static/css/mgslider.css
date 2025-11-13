@@ -1,0 +1,30 @@
+.mgslider-wrapper {
+    border-spacing: 10px;
+}
+.mgslider-show {
+    text-align: center;
+}
+.mgslider-limit {
+    width: 10%;
+    min-width: 75px;
+    height: 40px;
+    margin: 100px;
+    text-align: center;
+    background: #eee;
+    border: 1px solid #888;
+}
+.mgslider-limit, .mgslider-value {
+    font-variant-numeric: tabular-nums;
+}
+.mgslider-before {
+    height: 16px;
+    width: 100%;
+    background: #1e5bff;
+}
+.mgslider-feedback {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+

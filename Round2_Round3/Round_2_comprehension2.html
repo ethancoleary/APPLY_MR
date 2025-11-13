@@ -1,0 +1,160 @@
+{{ block title }}
+{{ endblock }}
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+
+<style>
+    table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+  }
+  td {
+    border: none;
+    text-align: center;
+    vertical-align: top;
+    padding: 0px;
+  }
+</style>
+
+<div class="content-box box-info">
+  <div class="section-header text-center">
+    <h3>✅ Comprehension Check</h3>
+    <hr class="section-divider">
+  </div>
+
+  <div class="section-box-nonhover box-neutral">
+    <div class="section-header">
+      <p>
+      You answered at least one question incorrectly, please check the below and submit the correct answers.
+      You can review the instructions at any time by clicking the button below.
+      </p>
+    </div>
+  </div>
+
+  <form method="post">
+
+      <div class="qa-box">
+  <h4>1. From which mix were your sets drawn during Round 2?</h4>
+        {{ if player.CQ1_incorrect == 1 }}<font color="#FF0000">Your answer question 1 was incorrect.
+        You faced sets from the set containing mostly
+        {{ if player.Round2_Mix == 1 }}easy{{ endif }}
+        {{ if player.Round2_Mix == 2 }}hard{{ endif }}
+         cards.</font> {{ endif }}
+  <center>
+    <table>
+      <tr>
+        <td>
+          <div class="q-label">Mix 1 <br>
+          (sets have mostly easy cards)</div>
+          <div class="radio-wrapper"><input type="radio"
+               name="CQ1"
+               value=1
+               id="CQ1_1"
+                {{ if player.CQ1 == 1 }}checked{{ endif }}
+               ></div>
+        </td>
+        <td>
+          <div class="q-label">Mix 2 <br>
+          (sets have mostly hard cards)</div>
+          <div class="radio-wrapper"><input type="radio"
+               name="CQ1"
+               value=2
+               id="CQ1_2"
+                {{ if player.CQ1 == 2 }}checked{{ endif }}
+               ></div>
+        </td>
+      </tr>
+{{ formfield_errors 'CQ1' }}
+    </table>
+  </center>
+</div>
+
+      <br>
+      <div class="qa-box">
+  <h4>2. Other participants in your group faces sets from which mix?</h4>
+        {{ if player.CQ2_incorrect == 1 }}<font color="#FF0000">Your answer question 2 was incorrect.
+        The other participants in your group max have faced sets from either Mix 1 or Mix 2.
+        Each participant was randomly assigned to one mix.</font> {{ endif }}
+  <center>
+    <table>
+      <tr>
+        <td>
+          <div class="q-label">Mix 1</div>
+          <div class="radio-wrapper"><input type="radio"
+               name="CQ2"
+               value=1
+               id="CQ2_1"
+            {{ if player.CQ2 == 1 }}checked{{ endif }}
+               ></div>
+        </td>
+        <td>
+          <div class="q-label">Mix 2</div>
+          <div class="radio-wrapper"><input type="radio"
+               name="CQ2"
+               value=2
+               id="CQ2_2"
+                {{ if player.CQ2 == 2 }}checked{{ endif }}
+               ></div>
+        </td>
+        <td>
+          <div class="q-label">Mix 1 or Mix 2<br>
+          (depending on their individual coin flip)</div>
+          <div class="radio-wrapper"><input type="radio"
+               name="CQ2"
+               value=3
+               id="CQ2_3"
+                {{ if player.CQ2 == 3 }}checked{{ endif }}
+               ></div>
+        </td>
+      </tr>
+{{ formfield_errors 'CQ2' }}
+    </table>
+  </center>
+</div>
+
+<br><br>
+
+  <div class="buttons-container">
+    <div class="instructions-box">
+      <p class="instructions-title">Instruction Buttons</p>
+      <div class="Instructions">
+        <a id="myBtn" onclick="open_modal(1)" class="otree-btn-next btn btn-primary">
+          Study Instructions
+        </a>
+      </div>
+    </div>
+    <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+      </form>
+  </div>
+</div>
+
+</div>
+<!-- Instruction Modal -->
+<div id="myModal1" class="modal">
+  <div class="modal-content">
+      <div class="modal-header">
+        <h2>Instructions</h2>
+        <span class="close" onclick="span_click(1)">&times;</span>
+      </div>
+    <p style="padding: 0px">
+   {{include Instructions_path}}
+    </p>
+  </div>
+</div>
+
+
+<div style="display:none;">
+  {% for field in form %}
+    {% if field.name in hidden_fields %}
+      {{ formfield field.name }}
+      {{ formfield_errors field.name }}
+    {% endif %}
+  {% endfor %}
+</div>
+
+
+{{ endblock }}

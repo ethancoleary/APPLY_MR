@@ -1,0 +1,174 @@
+{{ block title }}
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<link rel="stylesheet" href="{{static 'css/mgslider.css'}}">
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/mgslider.js' }}"></script>
+
+<style>
+input[name="Belief_discrimination"] {
+  width: 100px;
+  box-sizing: border-box;
+}
+</style>
+
+<div class="content-box box-info">
+
+  <!-- Header -->
+  <div class="section-header text-center">
+    <!-- Make titles dynamic basedon percentage? -->
+    <h3>🎲 Page 4/4: Selections {{ task }}</h3>
+    <hr class="section-divider">
+  </div>
+
+
+
+  <!-- Slider Inputs -->
+  <div class="section-box-nonhover box-white">
+    <div class="section-header ">
+      <p>
+        Out of 20 randomly drawn
+        <strong>{{ role_label }}s</strong>
+        facing a selection decision where the difference between the top
+        two workers' round 2 scores was low (<em>less than 3 points</em>), how many
+        <strong>{{ role_label }}s</strong>
+        do you think chose the worker with the <strong>second-highest score</strong>?
+      </p>
+      <p>
+        <em>Remember that participants either played Mix 1 or Mix 2. <strong>{{ role_label }}s</strong> knew this but
+        didn't know which Mix a specific participant played.</em>
+      </p>
+
+      <center>
+        {{ if player.participant.Treatment == 1 or player.participant.Treatment == 9 }}
+      <img src="{% static 'graphics/discrim_neutral.png' %}" height="200px"><br><br>
+      {{ endif }}
+        {{ if player.participant.Treatment == 2 or player.participant.Treatment == 5 }}
+      <img src="{% static 'graphics/discrim_female.png' %}" height="200px"><br><br>
+      {{ endif }}
+        {{ if player.participant.Treatment == 10 }}
+      <img src="{% static 'graphics/discrim_male.png' %}" height="200px"><br><br>
+      {{ endif }}
+        
+
+    </center>
+    </div>
+  </div>
+
+
+
+
+<!-- Payment Info -->
+<div class="section-box box-calm">
+  <div class="section-header">
+    <h4>💰 Payment Information</h4>
+    <p>
+      If this page is selected for payment, you will earn £1.20 if your answer is within 1 of the correct answer.
+    </p>
+    <center>{{ form.Belief_discrimination}}</center>
+  </div>
+</div>
+
+
+
+
+
+<!-- Hidden Fields -->
+<div style="display:none">
+  {% for field in form %}
+    {% if field.name in hidden_fields %}
+      {{ formfield field.name }}
+    {% endif %}
+  {% endfor %}
+</div>
+
+<!-- Buttons -->
+<div class="buttons-container">
+
+
+
+  <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+</div>
+</div>
+
+<!-- Modals -->
+<div id="myModal2" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Task Instructions</h2>
+      <span class="close" onclick="span_click(2)">&times;</span>
+    </div>
+    <div class="modal-body">
+
+    </div>
+  </div>
+</div>
+<div id="myModal1" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Study Instructions</h2>
+      <span class="close" onclick="span_click(1)">&times;</span>
+    </div>
+    <div class="modal-body">
+      {{ include Instructions_path }}
+    </div>
+  </div>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script
+  type="text/javascript"
+  async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+  <script>
+    function toggleDropdown(btnId, contentId, showText, hideText) {
+    const btn = document.getElementById(btnId);
+    const content = document.getElementById(contentId);
+    if (!btn || !content) return;
+    btn.onclick = function() {
+      const visible = content.style.display === "block";
+      content.style.display = visible ? "none" : "block";
+      btn.textContent = visible ? showText : hideText;
+    };
+  }
+
+  toggleDropdown('robotDropdownBtn', 'robotDropdownContent',
+    'Show Robot Hiring Decision Protocols', 'Hide Robot Instructions');
+  toggleDropdown('paymentRuleDropdownBtn', 'paymentRuleDropdownContent',
+    'Show Payment Rule for Decision 3', 'Hide Payment Rule for Decision 3');
+
+  function updatePaymentText() {
+    // Get the input value as decimal (e.g. 20% => 0.20)
+    const beliefInput = document.querySelector('input[name="Belief_Round2"]');
+    const paymentText = document.getElementById('payment-text');
+    if (!beliefInput || !paymentText) return;
+
+    let z = parseFloat(beliefInput.value);
+    if (isNaN(z)) {
+      paymentText.textContent = '';
+      return;
+    }
+    // Convert percentage to decimal
+    z = z / 100;
+
+    // Calculate X and Y
+    const X = 1.2 * (1 - Math.pow((1 - z), 2));
+    const Y = 1.2 * (1 - Math.pow(z, 2));
+
+    paymentText.textContent = `If this page is selected for payment, you will earn £${X.toFixed(2)} if you scored the most points in your group and £${Y.toFixed(2)} if you did not.`;
+  }
+
+  // Update initially on page load
+  window.addEventListener('load', updatePaymentText);
+
+  // Update on input change
+  const beliefInput = document.querySelector('input[name="Belief_Round2"]');
+  if (beliefInput) {
+    beliefInput.addEventListener('input', updatePaymentText);
+  }
+  </script>
+{{ endblock }}

@@ -1,0 +1,56 @@
+{{ block title }}
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<link rel="stylesheet" href="{{static 'css/mgslider.css'}}">
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/mgslider.js' }}"></script>
+
+<div class="content-box box-info">
+
+  <!-- Header -->
+  <div class="section-header text-center">
+    <h3>Increase Your Bonus</h3>
+    <hr class="section-divider">
+  </div>
+
+  <!-- Introduction -->
+  <div class="section-box-nonhover box-neutral">
+    <div class="section-header">
+      <p>
+        You have completed the {{ task }} game.
+        <br><br>
+        On the next four pages, you will make a series of guesses.
+        At the end of the study, one of the four pages will be chosen at random
+        and you will be paid according to the accuracy of your guess(es) on that page.
+        On each page, the available bonus is the same (£1.20).
+        
+      </p>
+    </div>
+  </div>
+
+
+
+
+
+<!-- Hidden Fields -->
+<div style="display:none">
+  {% for field in form %}
+    {% if field.name in hidden_fields %}
+      {{ formfield field.name }}
+    {% endif %}
+  {% endfor %}
+</div>
+
+<!-- Buttons -->
+<div class="buttons-container">
+
+  <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+</div>
+</div>
+
+
+{{ endblock }}

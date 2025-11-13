@@ -1,0 +1,207 @@
+{{ block title }}
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<link rel="stylesheet" href="{{static 'css/mgslider.css'}}">
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/mgslider.js' }}"></script>
+
+<style>
+input[name="Belief_Round2"] {
+  width: 100px;
+  box-sizing: border-box;
+}
+</style>
+
+<div class="content-box box-info">
+
+  <!-- Header -->
+  <div class="section-header text-center">
+    <!-- Make titles dynamic basedon percentage? -->
+    <h3>🎲 Page 2/4: Round 2</h3>
+    <hr class="section-divider">
+  </div>
+
+
+
+  <!-- Slider Inputs -->
+  <div class="section-box-nonhover box-white">
+    <div class="section-header ">
+      <p>
+        In Round 2 you were matched with 3 other participants to form a group.
+      Your group consisted of two female and two male Prolific users, including you.
+      </p>
+
+      <center>
+      <!--<img src="{% static 'graphics/Your_group_neutral.png' %}" height="150px"><br><br>-->
+
+    </center>
+      <p>
+        Sets from Mix 1 contained more easy than hard matching pairs, sets from Mix 2 contained more hard than easy matching pairs.
+        Whether a participant faced card sets from Mix 1 or from Mix 2 was determined by a coin flip.
+      </p>
+      <p>
+        <strong>Your Round 2 score:</strong>
+        <!--- Round 2 Score -->
+        {{ player.participant.R2_score }}<br>
+        <strong>Your card mix:</strong> Mix {{ player.participant.R2_mix }}
+      </p>
+      <p>
+        On this page, you need to guess the probability (in %) that you were the participant in your group who scored the most points in round 2.
+      </p>
+
+    </div>
+  </div>
+
+
+
+
+<!-- Payment Info -->
+<div class="section-box box-calm">
+  <div class="section-header">
+    <h4>💰 Payment Information</h4>
+    <p>
+      If this page is selected for payment, your payment depends on how accurate your guess is.
+      <ul>
+        <li> You should state your belief of the probability that you scored the most points in your group in round 2 in the following box. </li>
+        <li> For example, if you believe that there was a 20% chance that you scored more points than the other
+          3 participants in your group, you should type <em>20</em> in the box.</li>
+      <li>The payment rule follows a formula that is proven to ensure that <b> reporting your true belief gives you the highest expected earnings</b>.</li>
+      <li>If you wish to see the formulae for computing your earnings for this guess, please click below</li>
+  </ul>
+    <center></center>
+    </p>
+    <div style="margin: 20px 0;">
+      <center>
+  <button type="button" id="paymentRuleDropdownBtn" style="padding: 8px 16px; font-size: 16px; border-radius: 6px; background: #e3e3e3; border: 1px solid #bbb; cursor: pointer;">
+    Show Formulae for Payment Rule
+  </button>
+      </center>
+  <div id="paymentRuleDropdownContent" style="display: none; margin-top: 16px; background: #e3f2fd; border-radius: 5px; padding: 10px;">
+    If you report a belief that the probability you scored the most points in your group in round 2 is x:
+    <ul style="font-size: 16px; text-align: left; margin: 0 auto; max-width: 600px;">
+      <li> You will earn <span style="font-family: 'Times New Roman', serif;">\(1.2(1-(1-x)^2)\)</span> in pounds for this guess if you scored the most points among your group members in round 2. </li>
+      <li> You will earn <span style="font-family: 'Times New Roman', serif;">\(1.2(1-q^2)\)</span> in pounds for this guess if did not score the most points among your group members in round 2. </li>
+      <li> These formulae were proven to align your interests with truthful reporting in the paper by Brier, G.W in 1950 titled
+        "Verification of forecasts expressed in terms of probability". </li>
+  </div>
+</div>
+
+</div>
+</div>
+
+  <div class="section-box-nonhover box-neutral">
+      <p>
+        <strong>
+          What do you think is the probability (in %) that you were the participant in your group who scored the most points in round 2?
+        </strong>
+        <center>
+        <div style="display: inline-flex; align-items: center; gap: 4px;">
+  {{ form.Belief_Round2 }}
+  <span>%</span>
+</div>
+        <br>
+        <p id="payment-text" style=" margin-top: 10px; font-size: 14px"></p>
+      </center>
+      </p>
+        </div>
+
+
+<!-- Hidden Fields -->
+<div style="display:none">
+  {% for field in form %}
+    {% if field.name in hidden_fields %}
+      {{ formfield field.name }}
+    {% endif %}
+  {% endfor %}
+</div>
+
+<!-- Buttons -->
+<div class="buttons-container">
+
+
+
+  <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+</div>
+</div>
+
+<!-- Modals -->
+<div id="myModal2" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Task Instructions</h2>
+      <span class="close" onclick="span_click(2)">&times;</span>
+    </div>
+    <div class="modal-body">
+
+    </div>
+  </div>
+</div>
+<div id="myModal1" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Study Instructions</h2>
+      <span class="close" onclick="span_click(1)">&times;</span>
+    </div>
+    <div class="modal-body">
+      {{ include Instructions_path }}
+    </div>
+  </div>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script
+  type="text/javascript"
+  async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+  <script>
+    function toggleDropdown(btnId, contentId, showText, hideText) {
+    const btn = document.getElementById(btnId);
+    const content = document.getElementById(contentId);
+    if (!btn || !content) return;
+    btn.onclick = function() {
+      const visible = content.style.display === "block";
+      content.style.display = visible ? "none" : "block";
+      btn.textContent = visible ? showText : hideText;
+    };
+  }
+
+  toggleDropdown('robotDropdownBtn', 'robotDropdownContent',
+    'Show Robot Hiring Decision Protocols', 'Hide Robot Instructions');
+  toggleDropdown('paymentRuleDropdownBtn', 'paymentRuleDropdownContent',
+    'Show Payment Rule for Decision 3', 'Hide Payment Rule for Decision 3');
+
+  function updatePaymentText() {
+    // Get the input value as decimal (e.g. 20% => 0.20)
+    const beliefInput = document.querySelector('input[name="Belief_Round2"]');
+    const paymentText = document.getElementById('payment-text');
+    if (!beliefInput || !paymentText) return;
+
+    let z = parseFloat(beliefInput.value);
+    if (isNaN(z)) {
+      paymentText.textContent = '';
+      return;
+    }
+    // Convert percentage to decimal
+    z = z / 100;
+
+    // Calculate X and Y
+    const X = 1.2 * (1 - Math.pow((1 - z), 2));
+    const Y = 1.2 * (1 - Math.pow(z, 2));
+
+    paymentText.textContent = `If this page is selected for payment, you will earn £${X.toFixed(2)} if you scored the most points in your group and £${Y.toFixed(2)} if you did not.`;
+  }
+
+  // Update initially on page load
+  window.addEventListener('load', updatePaymentText);
+
+  // Update on input change
+  const beliefInput = document.querySelector('input[name="Belief_Round2"]');
+  if (beliefInput) {
+    beliefInput.addEventListener('input', updatePaymentText);
+  }
+  </script>
+{{ endblock }}

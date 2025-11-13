@@ -1,0 +1,221 @@
+{{ block title }}
+{{ endblock }}
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+
+<style>
+    table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+  }
+  td {
+    border: none;
+    text-align: center;
+    vertical-align: top;
+    padding: 0px;
+  }
+</style>
+
+<div class="content-box box-info">
+  <div class="section-header text-center">
+    <h3>✅ The Final Comprehension Check</h3>
+    <hr class="section-divider">
+  </div>
+
+  <div class="section-box-nonhover box-neutral">
+    <div class="section-header">
+      <p>
+      You answered at least one question incorrectly, please check the below and submit the correct answers.
+      You can review the instructions at any time by clicking the button below.
+      </p>
+    </div>
+  </div>
+
+  <form method="post">
+      <div class="qa-box">
+        1. In round 3, you will face sets containing:<br>
+          {{ if player.CQ1_2_incorrect == 1 }}<font color="#FF0000">Your answer question 1 was incorrect.
+        In Round 3, you will face sets containing only hard cards.</font> {{ endif }}
+        <br><br>
+        <input type="radio"
+               name="CQ1_2"
+               value=1
+               id="CQ12_1"
+               {{ if player.CQ1_2 == 1 }}checked{{ endif }}
+               > <span class="small-text">only easy cards.</span> <br>
+        <input type="radio"
+               name="CQ1_2"
+               value=2
+               id="CQ12_2"
+               {{ if player.CQ1_2 == 2 }}checked{{ endif }}
+               > <span class="small-text">a mix of easy and hard cards.</span> <br>
+        <input type="radio"
+               name="CQ1_2"
+               value=3
+               id="CQ12_3"
+               {{ if player.CQ1_2 == 3 }}checked{{ endif }}
+               > <span class="small-text">only hard cards.</span> <br>
+
+{{ formfield_errors 'CQ1_2' }}
+</div>
+
+      <br>
+      <div class="qa-box">
+  2. If Round 3 is selected for payment, under which condition will you earn £{{ piece_rate }} per point you score?<br>
+          {{ if player.CQ2_2_incorrect == 1 }}<font color="#FF0000">Your answer question 2 was incorrect.
+        You will earn £{{ piece_rate }} per point you score with Payment Rule A.</font> {{ endif }} <br><br>
+        <input type="radio"
+               name="CQ2_2"
+               value=1
+               id="CQ22_1"
+               {{ if player.CQ2_2 == 1 }}checked{{ endif }}
+               > <span class="small-text">You choose Payment Rule A.</span> <br>
+        <input type="radio"
+               name="CQ2_2"
+               value=2
+               id="CQ22_2"
+               {{ if player.CQ2_2 == 2 }}checked{{ endif }}
+               > <span class="small-text">You choose Payment Rule B and the Manager selects you.</span> <br>
+        <input type="radio"
+               name="CQ2_2"
+               value=3
+               id="CQ22_3"
+               {{ if player.CQ2_2 == 3 }}checked{{ endif }}
+               > <span class="small-text">You choose Payment Rule B and the Manager does not select you.</span>
+
+{{ formfield_errors 'CQ2_2' }}
+
+</div>
+
+    <br>
+      <div class="qa-box">
+  3. If Round 3 is selected for payment, under which condition will you earn £{{ tournament_rate1 }} per point you score?<br>
+          {{ if player.CQ3_2_incorrect == 1 }}<font color="#FF0000">Your answer question 3 was incorrect.
+        You will earn £{{ tournament_rate1 }} per point you score if you choose Payment Rule B and the Manager selects you.</font> {{ endif }}
+  <br><br>
+        <input type="radio"
+               name="CQ3_2"
+               value=1
+               id="CQ32_1"
+               {{ if player.CQ3_2 == 1 }}checked{{ endif }}
+               > <span class="small-text">You choose Payment Rule A.</span> <br>
+        <input type="radio"
+               name="CQ3_2"
+               value=2
+               id="CQ32_2"
+               {{ if player.CQ3_2 == 2 }}checked{{ endif }}
+               > <span class="small-text">You choose Payment Rule B and the Manager selects you.</span> <br>
+        <input type="radio"
+               name="CQ3_2"
+               value=3
+               id="CQ32_3"
+               {{ if player.CQ3_2 == 3 }}checked{{ endif }}
+               > <span class="small-text">You choose Payment Rule B and the Manager does not select you.</span>
+{{ formfield_errors 'CQ3_2' }}
+
+</div>
+
+
+    <br>
+
+      <div class="qa-box">
+  4. The Manager is paid a bonus corresponding to: <br>
+          {{ if player.CQ4_2_incorrect == 1 }}<font color="#FF0000">Your answer question 4 was incorrect.
+        The Manager earns a bonus corresponding to the Round 3 performance of their selected participant.</font> {{ endif }}
+  <br><br>
+  <input type="radio"
+               name="CQ4_2"
+               value=1
+               id="CQ42_1"
+         {{ if player.CQ4_2 == 1 }}checked{{ endif }}
+               > <span class="small-text">the Round 2 score of their selected participant.</span> <br>
+        <input type="radio"
+               name="CQ4_2"
+               value=2
+               id="CQ42_2"
+               {{ if player.CQ4_2 == 2 }}checked{{ endif }}
+               > <span class="small-text">the Round 1 score of their selected participant.</span> <br>
+        <input type="radio"
+               name="CQ4_2"
+               value=3
+               id="CQ42_3"
+               {{ if player.CQ4_2 == 3 }}checked{{ endif }}
+               > <span class="small-text">the Round 3 score of their selected participant.</span>
+{{ formfield_errors 'CQ4_2' }}
+</div>
+
+
+    <br>
+      <div class="qa-box">
+  5. What information does the Manager observe when making their selection? <br>
+          {{ if player.CQ7_2_incorrect == 1 }}<font color="#FF0000">Your answer question 5 was incorrect.
+       The Manager observes the Round 2 scores of each participant in your group next to their avatar.</font> {{ endif }}<br><br>
+  <input type="radio"
+               name="CQ7_2"
+               value=1
+               id="CQ72_1"
+                {{ if player.CQ7_2 == 1 }}checked{{ endif }}
+               > <span class="small-text">Only <strong>your</strong> Round 2 score.</span> <br>
+        <input type="radio"
+               name="CQ7_2"
+               value=2
+               id="CQ72_2"
+               {{ if player.CQ7_2 == 2 }}checked{{ endif }}
+               > <span class="small-text">The Round 2 scores of all participants in your group.</span> <br>
+        <input type="radio"
+               name="CQ7_2"
+               value=3
+               id="CQ72_3"
+               {{ if player.CQ7_2 == 3 }}checked{{ endif }}
+               > <span class="small-text">The Round 2 scores and avatars of all participants in your group.</span>
+{{ formfield_errors 'CQ7_2' }}
+    </table>
+  </center>
+</div>
+
+<br><br>
+
+  <div class="buttons-container">
+    <div class="instructions-box">
+      <p class="instructions-title">Instruction Buttons</p>
+      <div class="Instructions">
+        <a id="myBtn" onclick="open_modal(1)" class="otree-btn-next btn btn-primary">
+          Study Instructions
+        </a>
+      </div>
+    </div>
+    <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+      </form>
+  </div>
+</div>
+
+</div>
+<!-- Instruction Modal -->
+<div id="myModal1" class="modal">
+  <div class="modal-content">
+      <div class="modal-header">
+        <h2>Instructions</h2>
+        <span class="close" onclick="span_click(1)">&times;</span>
+      </div>
+    <p style="padding: 0px">
+   {{include Instructions_path}}
+    </p>
+  </div>
+</div>
+
+
+<div style="display:none;">
+  {% for field in form %}
+    {% if field.name in hidden_fields %}
+      {{ formfield field.name }}
+      {{ formfield_errors field.name }}
+    {% endif %}
+  {% endfor %}
+</div>
+
+
+{{ endblock }}

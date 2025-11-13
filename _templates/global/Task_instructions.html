@@ -1,0 +1,91 @@
+<!-- _templates/global/Task_instructions.html -->
+
+
+<div class="content-box box-task">
+    <div class="section-header text-center">
+    <h3>📋 The {{MathMemory}} task</h3>
+    <hr class="section-divider">
+    </div>
+        
+
+        <div class="section-box box-neutral">
+            <div class="section-header">
+              <h4>🧱 Basics</h4>
+              <p>On your screen, you will see <strong>16 blue squares</strong>. Each square represents a hidden
+              card which can be revealed by clicking on it. Your task is to find as many matching pairs of cards
+            as possible within the time limit.</p>
+            </div>
+
+        </div>
+
+        <div class="section-box box-neutral">
+          <div class="section-header">
+            <h4>🕹️ How to play</h4>
+          <ol>
+              <li> Start with a set of 16 face-down cards. </li>
+              <li> Click any two cards to flip </li>
+                <ul>
+                    <li> If they match, you earn one point. </li>
+                    <li> If not, they flip back. </li>
+                </ul>
+              <li> Once you found all the 8 pairs, you get a new set of 16 cards. You can play
+                up to 7 sets per round (the maximum score is 56).</li>
+          </ol>
+          </div>
+
+        </div>
+
+        <div class="section-box box-info"><!--make the content variable by treatment-->
+          <div class="section-header">
+            <h4>🎯 What is a match</h4>
+            <p>The rule for matching pairs depends on the <strong>difficulty level</strong> of the cards.</p>
+            <ol>
+              <li><strong>Easy level:</strong> Each card shows an addition problem (e.g. 2+3).
+              Two cards form a matching pair fit their solutions are the same (e.g. 2+3 = 4+1).</li>
+              <li><strong>Hard level:</strong> Each card shows an addition problem and a Roman numeral (I or II).
+              Two cards form a matching pair if both the sum and Roman numerals are the same 
+              (e.g. 2+3 II and 4+1 II).</li>
+            </ol>
+          </div>
+
+        </div>
+
+
+
+        <div class="section-box box-calm">
+          <div class="section-header">    
+
+            <h4 class="text-center mt-4"> 🔍Examples</h4> <!--make the content variable by treatment-->
+              <div class="task-example text-center mb-4"> <!--adjust content to our examples-->
+                <img src="{{ C.MathMemory_pic }}" style="max-width:100%;" alt="Non-match above, match below" />
+              </div>
+
+               
+              <ul>
+                <li>The top example is not a match because hearts  (❤️ and 🖤).</li>
+                <li>The bottom example is a match: the sums are equal (3+4 = 5+2) and colors match (🖤).</li>
+              </ul>
+          
+              </div>
+          </div>
+
+          <div class="section-box box-info">
+          <div class="section-header">    
+
+          <h4> 🏆 Timing & Scoring:</h4>
+          <ul>
+            <li> Each round lasts <strong>two minutes</strong>. </li>
+            <li> You earn <strong>1 point</strong> per correct match.</li>
+            <li>The number of points you earn will affect your bonus.</li>
+          </ul>
+          <p class="text-center">Keep in mind that this task is influenced by your <strong>maths skills</strong>.</p><!--make this variable-->
+
+          </div>
+          </div>
+          
+
+
+
+    </div>
+  </div> 
+</div>     

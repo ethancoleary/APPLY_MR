@@ -1,0 +1,22 @@
+{{ block title }}
+
+{{ endblock }}
+
+{{block content}}
+You will now be redirected automatically redirected to Prolific.
+
+<script>
+    let completionlink = js_vars.completionlinkdisallowed;
+
+    window.onload = function(){
+        window.location.href=completionlink;
+    }
+</script>
+
+
+{{ endblock }}
+
+
+
+
+

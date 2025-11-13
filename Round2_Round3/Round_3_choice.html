@@ -1,0 +1,156 @@
+{{ block title }}
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<link rel="stylesheet" href="{{static 'css/mgslider.css'}}">
+<link rel="stylesheet" href="{{static 'css/calculator.css'}}">
+<script type="text/javascript" src="{{ static 'js/pie_chart.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/calculator.js' }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script src="{{ static 'js/mgslider.js' }}"></script>
+
+<div class="content-box box-info">
+
+  <!-- Header -->
+  <div class="section-header text-center">
+    <h3>🎯 Round 3 of 3: Choose a Payment Rule</h3>
+    <hr class="section-divider">
+  </div>
+
+  <!-- Prompt -->
+  <div class="section-box-nonhover box-neutral">
+    <div class="section-header">
+      <p>
+        Which payment rule would you like to choose for Round 3?
+      </p>
+    </div>
+  </div>
+
+  <!-- Slider & Chart -->
+  <div class="section-box-nonhover box-calm">
+    <div class="section-header text-center">
+      <center>
+    <table>
+      <tr>
+        <td style="width: 10%"></td>
+        <td style="width: 35%">
+          <div class="q-label"><center><strong><h4>Payment Rule A</h4></strong></center></div>
+
+        </td>
+        <td style="width: 10%"></td>
+        <td style="width: 35%">
+          <div class="q-label"><center><strong><h4>Payment Rule B</h4></strong></center>
+          </div>
+
+        </td>
+        <td style="width: 10%"></td>
+      </tr>
+      <tr>
+        <td style="width: 10%"></td>
+        <td style="width: 35%">
+          <div class="q-label"><center>
+          (£{{ piece_rate }} per point you score)</center></div>
+
+        </td>
+        <td style="width: 10%"></td>
+        <td style="width: 35%">
+          <div class="q-label"><center>
+            (£{{ tournament_rate1 }} per point you score if the <strong>{{ selector_role }}</strong> selects you)
+          </center></div>
+
+        </td>
+        <td style="width: 10%"></td>
+      </tr>
+      <tr>
+        <td style="width: 10%"></td>
+        <td style="width: 35%">
+          <div class="radio-wrapper"><center><input type="radio"
+               name="Choice"
+               value=1
+               id="PRA"
+               ></center></div>
+        </td>
+        <td style="width: 10%"></td>
+        <td style="width: 35%">
+          <div class="radio-wrapper"><center><input type="radio"
+               name="Choice"
+               value=2
+               id="PRB"
+               ></center></div>
+        </td>
+        <td style="width: 10%"></td>
+      </tr>
+{{ formfield_errors 'Choice' }}
+    </table>
+  </center>
+    </div>
+  </div>
+
+
+
+
+<!-- Hidden form fields -->
+<div style="display:none">
+  {% for field in form %}
+    {% if field.name in hidden_fields %}
+      {{ formfield field.name }}
+    {% endif %}
+  {% endfor %}
+</div>
+
+<!-- Instruction & Next Buttons -->
+<div class="buttons-container">
+  <div class="instructions-box">
+    <p class="instructions-title">Instruction Buttons</p>
+    <div class="Instructions">
+      <a onclick="open_modal(1)" class="otree-btn-next btn btn-primary">Study Instructions</a>
+      <a onclick="open_modal(3)" class="otree-btn-next btn btn-primary">Task Instructions</a>
+    </div>
+  </div>
+  <button id="NextButton" class="otree-btn-next btn btn-primary">Start round 3</button>
+</div>
+
+</div>
+
+<!-- Modals -->
+<div id="myModal3" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Task Instructions</h2>
+      <span class="close" onclick="span_click(3)">&times;</span>
+    </div>
+    <div class="modal-body">
+      {{ include Task_instructions }}
+    </div>
+  </div>
+</div>
+
+<div id="myModal2" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Token Allocation Instructions</h2>
+      <span class="close" onclick="span_click(2)">&times;</span>
+    </div>
+    <div class="modal-body">
+      {{ include C.Instructions_choice_path }}
+    </div>
+  </div>
+</div>
+
+<div id="myModal1" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Study Instructions</h2>
+      <span class="close" onclick="span_click(1)">&times;</span>
+    </div>
+    <div class="modal-body">
+      {{ include Instructions_path }}
+    </div>
+  </div>
+</div>
+{{ endblock }}

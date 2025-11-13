@@ -1,0 +1,60 @@
+{{ block title }}
+
+{{ endblock }}
+
+{{block content}}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+<br>
+<br>
+<br>
+<br>
+<div class="content-box box-calm">
+<p>
+    You will soon begin Round 1.
+    You will have <strong>{{ C.Round_length_min }} minutes</strong> to find as many matching pairs as possible.
+    <br><br>
+For the first minute of this round, you will have to find matching pairs in a set containing
+only easy cards. After the minute is up, the set will change and the new set will contain only
+hard cards. This is shown visually below.
+</p>
+<div class="content-box box-white" style="max-width: 600px">
+    <center>
+        <img src="{{ static 'graphics/round1cards.png' }}" style="max-width:100%; height: 300px;" alt="round 1" />
+    </center>
+    </div>
+
+    Below we describe how your payment depends on your performance.<br><br>
+    <center>
+    <em>Please do not use calculators or AI tools during this study.</em>
+    </center>
+</div>
+
+<div class="content-box box-info">
+          <div class="section-header">
+
+          <h4> Payment Rule for Round 1</h4>
+          If this round is randomly selected for payment, you will earn <strong>£0.05</strong>
+for each point you score (i.e. each matching pair you find) throughout the {{ C.Round_length_min }} minutes.
+
+          </div>
+          
+
+
+<br>
+<center>
+    <form method="post">
+    <button type="submit" class="otree-btn-next btn btn-primary">Begin Round 1</button>
+  </form>
+    </center>
+</div>
+
+</div>
+{{ endblock }}
+
+
+
+
+

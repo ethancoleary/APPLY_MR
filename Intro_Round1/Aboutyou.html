@@ -1,0 +1,48 @@
+{{ block title }}
+{{ endblock }}
+
+{{ block content }}
+
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+
+<div class="content-box box-info">
+  <div class="section-header text-center">
+    <h3>👤 Demographics</h3>
+    <hr class="section-divider">
+  </div>
+
+  <div class="section-box-nonhover box-neutral">
+    <div class="section-header">
+      {{ formfield 'age' }}
+      {{ formfield 'gender' }}
+      {{ formfield 'country' }}
+      {{ formfield 'job' }}
+    </div>
+  </div>
+</div>
+
+
+  <!-- Hidden Fields -->
+  <div style="display:none">
+    {% for field in form %}
+      {% if field.name in hidden_fields %}
+        {{ formfield field.name }}
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+  <script> 
+    window.onload = function() {
+      saveBrowserData();
+    };
+  </script>
+
+  <div class="buttons-container" style="justify-content: center;">
+      <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+    </div>
+</div>
+{{ endblock }}

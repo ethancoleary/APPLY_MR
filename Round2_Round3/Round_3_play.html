@@ -1,0 +1,86 @@
+{{ block title }}
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+<link rel="stylesheet" href="{{static 'css/Card_game.css'}}">
+
+<div class="content-box box-info">
+
+  <!-- Header -->
+  <div class="section-header text-center">
+    <h3>⚙️ Round 3 of 3</h3>
+    <hr class="section-divider">
+  </div>
+
+    <div class="otree-timer_2" style="margin-top: 10px;">
+        Time remaining: <span id="time-left"></span> seconds
+    </div>
+
+
+  <!-- Warning about refresh -->
+  <div class="section-box-nonhover box-warn">
+    <div class="section-header">
+            <h4> ⚠️Please do not refresh browser</h4>
+        </div>
+        <p>
+            <strong>Refreshing your browser will not stop the timer but will reset your score.</strong>
+        </p>
+    </div>
+
+
+
+
+
+  <!-- Game Area -->
+  <div class="section-box-nonhover box-calm">
+    <div class="section-header text-center">
+      <div id="picbox">
+        <span id="boxbuttons"></span>
+        <div id="transitionMessage"></div>
+        <div id="boxcard"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="buttons-container">
+  <!-- TODO: delete this button -->
+    <button id="NextButton" class="otree-btn-next btn btn-primary">DEBUG NEXT (DELETEME)</button>
+</div>
+
+<!-- Game script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ static 'js/memory_game.js' }}"></script>
+
+{% for field in form %}
+  {% if field.name not in hidden_fields %}
+    {{ formfield field.name }}
+  {% endif %}
+{% endfor %}
+<div style="display:none">
+  {% for field in form %}
+    {% if field.name in hidden_fields %}
+      {{ formfield field.name }}
+    {% endif %}
+  {% endfor %}
+</div>
+<!-- The “Next” is triggered by your game script when time expires -->
+
+
+    <script>
+        let customTimerEle = document.getElementById('time-left');
+
+        document.addEventListener("DOMContentLoaded", function (event) {
+            $('.otree-timer__time-left').on('update.countdown', function (event) {
+                customTimerEle.innerText = event.offset.totalSeconds;
+            });
+        });
+
+    </script>
+
+{{ endblock }}

@@ -1,0 +1,182 @@
+{{ block title }}
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<link rel="stylesheet" href="{{static 'css/mgslider.css'}}">
+<link rel="stylesheet" href="{{static 'css/calculator.css'}}">
+<script type="text/javascript" src="{{ static 'js/pie_chart.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/calculator.js' }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script src="{{ static 'js/mgslider.js' }}"></script>
+
+<div class="content-box box-info">
+
+  <!-- Header -->
+  <div class="section-header text-center">
+    <h3>🤺 🧍Round 3</h3>
+    <hr class="section-divider">
+  </div>
+
+  <!--adjust them to accomodate Recruiter presence as well if treatment is as such.-->
+
+  <!-- Intro -->
+  <div class="section-box box-neutral">
+        <div class="section-header">
+        <p>In this round, you will have <strong>2 minutes</strong> to find as many matching pairs as possible.<br> <br>
+         <strong>Difficulty level</strong><br>
+          You will face only cards of a <strong>hard level of difficulty</strong>, where each
+      card shows an addition problem and a Roman numeral (I or II). Two cards form a matching pair if both
+    the sum and the Roman numerals are the same (e.g. 2+3 II and 4+1 II). </p>
+        <p style="text-align: center;">
+            This time, <strong>you choose your own payment rule</strong>.</p>
+            <br>
+        <p>
+        Before choosing a payment rule, please read the following instructions. You need to pass a quiz on the 
+      information in order to proceed.</p>
+        </div>
+  </div>
+
+ <div class="section-box box-white">
+  <div class="section-header">
+    <p>There is another participant called <strong>the Manager</strong> who has also been recruited on Prolific.
+    The Manager is a male who is not part of your group.</p> <!--make this variable by treatment-->
+  </div>
+  <div class="task-example text-center mb-4"> <!--make this variable by treatment-->
+                <img src="{{ static 'graphics/Manager_avatar_male.png' }}" style="max-width:75%; height: 200px;" alt="Manager avatar" />
+              </div>
+
+
+ </div>
+ <div class="section-box box-white">
+  <div class="section-header">
+ <p><strong>The Manager</strong> must select one participant in your group and earns £0.03 for each point that their
+    selected participant scores in Round 3. Therefore, the Manager is motivated to select the participant that they
+    believe will perform best in <strong>hard sets</strong>.</p>
+
+    <p><strong>How the Manager selects</strong><br>
+    The Manager is familiar with the task. When making their selection, the Manager will observe the avatars and
+    the Round 2 scores of all participants in your group simultaneously. Below, you can see an example of what 
+    the Manager observes.
+    </p>
+    <div class="task-example text-center mb-4"> <!--make this variable by treatment-->
+                <img src="{{ static 'graphics/Manager_view_neutral.png' }}" style="max-width:75%;" alt="Manager view" /><!--Make this treatment specific.-->
+              </div>
+    <p>
+      The Manager knows that the scores obtained in Round 2 are the result of facing sets either from Mix 1 or Mix 2,
+      but they do <strong>not know which set each participant faced</strong>.
+    </p>
+  </div>
+</div>
+
+ <div class="section-box box-contrast">
+  <div class="section-header">
+    <p><strong>💰 Your Payment Rule for Round 3</strong><br>
+    You can choose between the following payment rules.
+    <ul>
+      <strong>Payment Rule A:</strong> You will earn £{{ piece_rate }} per point (i.e. matching pair). <!--make this dynamic-->
+    </ul>
+    <ul>
+      <strong>Payment Rule B:</strong> You will earn £{{ tournament_rate1 }} per point (i.e. matching pair) <strong>
+        if the Manager selects you</strong>. You will earn £0.00 if the Manager does not select you. <!--make this dynamic-->
+    </ul>
+    </p>
+  </div>
+</div>
+
+
+
+
+
+
+  
+
+
+
+
+  <!-- Form Fields -->
+  <form>
+    {% for field in form %}
+      {% if field.name not in hidden_fields %}
+        {{ formfield field.name }}
+      {% endif %}
+    {% endfor %}
+    <div style="display:none">
+      {% for field in form %}
+        {% if field.name in hidden_fields %}
+          {{ formfield field.name }}
+        {% endif %}
+      {% endfor %}
+    </div>
+    
+
+  <!-- Buttons -->
+  <div class="buttons-container">
+    <div class="instructions-box">
+      <p class="instructions-title">Instruction Buttons</p>
+      <div class="Instructions">
+        <a onclick="open_modal(1)" class="otree-btn-next btn btn-primary">Study Instructions</a>
+        <a onclick="open_modal(3)" class="otree-btn-next btn btn-primary">Task Instructions</a>
+      </div>
+    </div>
+    <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+  </div>
+  </form>
+
+
+</div>
+
+
+
+
+<!-- Modals -->
+<div id="myModal3" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Task Instructions</h2>
+      <span class="close" onclick="span_click(3)">&times;</span>
+    </div>
+    <div class="modal-body">
+      {{ include Task_instructions }}
+    </div>
+  </div>
+</div>
+
+<div id="myModal2" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Token Allocation Instructions</h2>
+      <span class="close" onclick="span_click(2)">&times;</span>
+    </div>
+    <div class="modal-body">
+      {{ include C.Instructions_choice_path }}
+    </div>
+  </div>
+</div>
+
+<div id="myModal1" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Study Instructions</h2>
+      <span class="close" onclick="span_click(1)">&times;</span>
+    </div>
+    <div class="modal-body">
+      {{ include Instructions_path }}
+    </div>
+  </div>
+</div>
+
+
+<script>
+  document.getElementById('revealCalculator').addEventListener('click', () => {
+    // show the calculator area
+    document.getElementById('calculatorArea').style.display = 'block';
+    // hide the reveal button
+    document.getElementById('revealCalculator').style.display = 'none';
+  });
+</script>
+{{ endblock }}

@@ -1,0 +1,177 @@
+{{ block title }}
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<link rel="stylesheet" href="{{static 'css/mgslider.css'}}">
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/mgslider.js' }}"></script>
+
+<style>
+input[name="Belief_Round2"] {
+  width: 100px;
+  box-sizing: border-box;
+}
+</style>
+
+<div class="content-box box-info">
+
+  <!-- Header -->
+  <div class="section-header text-center">
+    <!-- Make titles dynamic basedon percentage? -->
+    <h3>Survey 3/3</h3>
+    <hr class="section-divider">
+  </div>
+
+
+<form>
+  <!-- Slider Inputs -->
+  <div class="section-box-nonhover box-white">
+    <div class="section-header ">
+      <p>
+
+        What is your ethnicity?
+        </p>
+        {{ form.Ethnicity }}
+    </div>
+  </div>
+
+  <div class="section-box-nonhover box-white">
+    <div class="section-header ">
+      <p>
+
+        If there was to be a <strong>General Election</strong> held next week, which party would you be most likely to vote for?
+        </p>
+        {{ form.Political_Leaning }}
+    </div>
+  </div>
+
+  <div class="section-box-nonhover box-white">
+    <div class="section-header ">
+      <p>
+
+        Do you think you have ever been <strong> treated differently, in a good or bad manner</strong> in the workplace or during your education?
+        That is, do you think you were treated differently because of some characteristic other than your ability?
+
+        </p>
+        {{ form.Past_discrim }}
+    </div>
+  </div>
+
+  <div id="followup_questions" style="display:none;">
+    <div class="section-box-nonhover box-white">
+    <p>
+      In that case, based on which of the following do you think that you were treated differently in the workplace? (Select all that apply) <br><br>
+      <div>
+        <input type="checkbox" id="age" value="1" name="discrim_identity_age" />
+        <label for="age">Age</label>
+      </div>
+      <div>
+        <input type="checkbox" id="gender" value="1" name="discrim_identity_gender" />
+        <label for="gender">Gender</label>
+      </div>
+      <div>
+        <input type="checkbox" id="race" value="1" name="discrim_widentity_race" />
+        <label for="race">Race/Ethnicity</label>
+      </div>
+      <div>
+        <input type="checkbox" id="religion" value="1" name="discrim_widentity_religion" />
+        <label for="religion">Religion</label>
+      </div>
+      <div>
+        <input type="checkbox" id="disability" value="1" name="discrim_identity_disability" />
+        <label for="disability">Disability</label>
+      </div>
+      <div>
+        <input type="checkbox" id="sexual_orientation" value="1" name="discrim_identity_sex" />
+        <label for="sexual_orientation">Sexual Orientation</label>
+      </div>
+      <div>
+        <input type="checkbox" id="other" value="1" name="discrim_identity_other" />
+        <label for="other">Other</label>
+      </div>
+    </p>
+
+    <p>
+      Do you think you were treated better or worse in the workplace because of these?<br><br>
+      {{ form.discrim_pref }}
+    </p>
+      </div>
+  </div>
+
+
+
+
+<!-- Hidden Fields -->
+<div style="display:none">
+  {% for field in form %}
+    {% if field.name in hidden_fields %}
+      {{ formfield field.name }}
+    {% endif %}
+  {% endfor %}
+</div>
+
+<!-- Buttons -->
+<div class="buttons-container">
+
+
+
+  <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+  </form>
+</div>
+</div>
+
+<!-- Modals -->
+<div id="myModal2" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Task Instructions</h2>
+      <span class="close" onclick="span_click(2)">&times;</span>
+    </div>
+    <div class="modal-body">
+
+    </div>
+  </div>
+</div>
+<div id="myModal1" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Study Instructions</h2>
+      <span class="close" onclick="span_click(1)">&times;</span>
+    </div>
+    <div class="modal-body">
+      {{ include Instructions_path }}
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let discrimInputs = document.querySelectorAll('input[name="Past_discrim"]');
+    let followupDiv = document.getElementById('followup_questions');
+
+    function toggleFollowup() {
+      let selectedValue = Array.from(discrimInputs).find(input => input.checked)?.value;
+      if (selectedValue === '1') {
+        followupDiv.style.display = 'block';
+      } else {
+        followupDiv.style.display = 'none';
+        followupDiv.querySelectorAll('input[type=checkbox], input[type=radio]').forEach(input => input.checked = false);
+        // Optionally clear the form.discrim_work_pref value as well, if not a checkbox/radio
+        let select = followupDiv.querySelector('select[name="discrim_pref"]');
+        if (select) select.selectedIndex = 0;
+        let textInput = followupDiv.querySelector('input[name="discrim_pref"]');
+        if (textInput) textInput.value = '';
+      }
+    }
+
+    discrimInputs.forEach(input => {
+      input.addEventListener('change', toggleFollowup);
+    });
+
+    toggleFollowup();
+  });
+</script>
+
+{{ endblock }}

@@ -1,0 +1,219 @@
+{{ block title }}
+{{ endblock }}
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+
+<style>
+    table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+  }
+  td {
+    border: none;
+    text-align: center;
+    vertical-align: top;
+    padding: 0px;
+  }
+</style>
+
+<div class="content-box box-info">
+  <div class="section-header text-center">
+    <h3>✅ Comprehension Check</h3>
+    <hr class="section-divider">
+  </div>
+
+  <div class="section-box-nonhover box-neutral">
+    <div class="section-header">
+      <p>
+      Please answer the four questions below to confirm you’ve understood the instructions.
+      You have <strong>two attempts</strong>. After two incorrect tries, the study will end.  
+      You can review the instructions at any time by clicking the button below.
+      </p>
+    </div>
+  </div>
+
+  <form method="post">
+
+      <div class="qa-box">
+  <h4>1. Which of the following forms a matching pair with the below card?</h4>
+  <center>
+    <img src="{% static cq1.main %}" class="card-main-image">
+      <hr class="section-divider">
+    <table>
+        <tr>
+          <td>A<br><img src="{% static cq1.A %}" class="card-match-image"></td>
+          <td>B<br><img src="{% static cq1.B %}" class="card-match-image"></td>
+          <td>C<br><img src="{% static cq1.C %}" class="card-match-image"></td>
+         </tr>
+      <tr>
+        <td>
+          <div class="card-label">Card A</div>
+          <div class="radio-wrapper"><input type="radio"
+               name="CQ1"
+               value=1
+               id="CQ1_1"
+               ></div>
+        </td>
+        <td>
+          <div class="card-label">Card B</div>
+          <div class="radio-wrapper"><input type="radio"
+               name="CQ1"
+               value=2
+               id="CQ1_2"
+               ></div>
+        </td>
+        <td>
+          <div class="card-label">Card C</div>
+          <div class="radio-wrapper"><input type="radio"
+               name="CQ1"
+               value=3
+               id="CQ1_3"
+               ></div>
+        </td>
+      </tr>
+{{ formfield_errors 'CQ1' }}
+    </table>
+  </center>
+</div>
+
+      <br>
+      <div class="qa-box">
+  <h4>2. Which of the following forms a matching pair with the below card?</h4>
+  <center>
+    <img src="{% static cq2.main %}" class="card-main-image">
+    <hr class="section-divider">
+    <table>
+        <tr>
+        <td><img src="{% static cq2.A %}" class="card-match-image"></td>
+        <td><img src="{% static cq2.B %}" class="card-match-image"></td>
+        <td><img src="{% static cq2.C %}" class="card-match-image"></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="card-label">Card A</div>
+          <div class="radio-wrapper"><input type="radio"
+               name="CQ2"
+               value=1
+               id="CQ2_1"
+               ></div>
+        </td>
+        <td>
+          <div class="card-label">Card B</div>
+          <div class="radio-wrapper"><input type="radio"
+               name="CQ2"
+               value=2
+               id="CQ2_2"
+               ></div>
+        </td>
+        <td>
+          <div class="card-label">Card C</div>
+          <div class="radio-wrapper"><input type="radio"
+               name="CQ2"
+               value=3
+               id="CQ2_3"
+               ></div>
+        </td>
+      </tr>
+{{ formfield_errors 'CQ2' }}
+    </table>
+  </center>
+</div>
+      <br>
+      <div class="qa-box">
+  <h4>3. For how many seconds does each round last?</h4>
+          <input type="radio"
+               name="CQ3"
+               value=1
+               id="CQ3_1"
+               > 60 <br>
+      <input type="radio"
+               name="CQ3"
+               value=2
+               id="CQ3_2"
+               > 90 <br>
+      <input type="radio"
+               name="CQ3"
+               value=3
+               id="CQ3_3"
+               > 120 <br>
+      <input type="radio"
+               name="CQ3"
+               value=4
+               id="CQ3_4"
+               > 150 <br>
+          </div>
+      {{ formfield_errors 'CQ3' }}
+<br>
+      <div class="qa-box">
+  <h4>4. Your performance in the task is influenced by which of the following skills?</h4>
+          <input type="radio"
+               name="CQ4"
+               value=1
+               id="CQ4_1"
+               > Logic <br>
+      <input type="radio"
+               name="CQ4"
+               value=2
+               id="CQ4_2"
+               > {{ if player.treatment == 9 or player.treatment == 10 }}Emotional recognition
+                    {{ else }}Maths{{ endif }}<br>
+      <input type="radio"
+               name="CQ4"
+               value=3
+               id="CQ4_3"
+               > Verbal reasoning <br>
+      <input type="radio"
+               name="CQ4"
+               value=4
+               id="CQ4_4"
+               > Artistic <br>
+          </div>
+    </div>
+{{ formfield_errors 'CQ4' }}
+
+
+
+  <div class="buttons-container">
+    <div class="instructions-box">
+      <p class="instructions-title">Instruction Buttons</p>
+      <div class="Instructions">
+        <a id="myBtn" onclick="open_modal(1)" class="otree-btn-next btn btn-primary">
+          Study Instructions
+        </a>
+      </div>
+    </div>
+    <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+      </form>
+  </div>
+</div>
+</div>
+
+<!-- Instruction Modal -->
+<div id="myModal1" class="modal">
+  <div class="modal-content">
+      <div class="modal-header">
+        <h2>Instructions</h2>
+        <span class="close" onclick="span_click(1)">&times;</span>
+      </div>
+    <p style="padding: 0px">
+   {{include Instructions_path}}
+    </p>
+  </div>
+</div>
+
+
+<div style="display:none;">
+  {% for field in form %}
+    {% if field.name in hidden_fields %}
+      {{ formfield field.name }}
+      {{ formfield_errors field.name }}
+    {% endif %}
+  {% endfor %}
+</div>
+
+
+{{ endblock }}

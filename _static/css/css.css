@@ -1,0 +1,330 @@
+body {
+  font-size: 18px; /* Increase base font size */
+}
+
+
+
+/* Otree hide timer. */
+.otree-timer {
+    display: none !important;
+}
+
+.otree-timer_2 {
+    font-size: 20px;
+    text-align: center;
+    background-color: #f0f8ff;
+    color: #333;
+    padding: 10px 20px;
+    margin: 20px auto; /* center horizontally */
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    width: fit-content;
+    display: block;
+}
+
+  .ai-catch-wrap {
+    display: grid;
+    place-items: center;
+    gap: 16px;
+    padding: 20px;
+    text-align: center;
+  }
+  .ai-check-img {
+    max-width: 200px;       /* keep it sensible on small screens */
+    width: 100%;
+    transform: rotate(-30deg);
+    transform-origin: center center;
+    display: block;
+  }
+  .ai-input {
+    width: 200px;
+    text-align: center;
+  }
+
+.ai_catch_answer {
+  width: 200px;
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 4px 6px;
+}
+
+/* --- Hide the auto-generated label for this field --- */
+label[for="id_ai_catch_answer"] {
+  display: none !important;
+}
+
+
+
+/* BOXES */
+
+:root {
+  /* === Core Color Palette === */
+  --primary: #4CAF50;       /* Strong green (main accent) */
+  --secondary: #81C784;     /* Soft green */
+  --calm: #e6ffe6;          /* Light green background */
+  --info: #e6f7ff;          /* Soft blue background */
+  --task: #f0f0f0;          /* Light grey */
+  --warn: #fff3cd;          /* Light yellow for alerts */
+  --neutral: #f9f9f9;       /* Default light background */
+  --white: #ffffff;         /* white */
+  --text-dark: #212121;     /* Standard dark text */
+  --text-light: #ffffff;    /* Light text for dark buttons */
+    --success: #d4edda;     /* pale green */
+  --danger:  #f8d7da;       /* pale red */
+}
+
+
+
+.attention-box {
+  border: 2px solid lightblue; /* Light blue border */
+  padding: 12px; /* Space inside the border */
+  border-radius: 5px; /* Optional: rounded corners */
+  background-color: #E0F7FA; /* Even lighter blue background */
+  margin-top: 8px; /* Space above the box */
+}
+
+
+
+/* === Standard content box === */
+.content-box {
+  padding: 25px;
+  margin: 30px auto;
+  max-width: 900px;
+  border: 1px solid #ddd;  /* light neutral fallback */
+  border-radius: 12px;
+  background-color: var(--neutral);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.content-box.box-info {
+  background-color: var(--neutral);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.content-box.box-calm {
+  background-color: var(--calm);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+
+
+.content-box.box-info form {
+  background-color: var(--neutral);
+  padding: 10px;
+  border-radius: 5px;
+}
+input[name="browser"] {
+  background-color: var(--neutral);
+  border: 1px solid #ccc; /* optional border */
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  color: inherit; /* keep text color */
+}
+
+/* === Box Variants === */
+.box-calm {
+  background-color: var(--calm);
+  border-color: #b3e6b3; /* soft green border */
+}
+.box-task {
+  background-color: var(--task);
+  border-color: #b3e6b3; /* soft green border */
+}
+
+.box-contrast {
+  background-color: #d6f0ff; /* Slightly darker blue than --info */
+  border-color: #aadcee;
+}
+
+.box-info {
+  background-color: var(--info);
+  border-color: #99d6f2; /* soft blue border */
+}
+
+/* Debug info box */
+.section-box.box-info-debug {
+  display:none;
+}
+
+.box-neutral {
+  background-color: var(--neutral);
+  border-color: #ddd;
+}
+
+.box-white {
+  background-color: var(--white);
+  border-color: #ddd;
+}
+
+.box-warn {
+  background-color: var(--warn);
+  border-color: #ffe6a1; /* soft orange/yellow */
+}
+
+
+
+.instructions-box {
+  border: 1px solid #ccc; /* Light gray border */
+  padding: 16px;          /* Adds space inside the box */
+  border-radius: 8px;     /* Rounds the corners */
+  background-color: #f9f9f9; /* Light background color */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+.section-box {
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.05);
+  text-align: justify;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.section-box-nonhover {
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.05);
+  text-align: justify;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.section-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 1px 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+.box-success {
+  background-color: var(--success);
+  border: 1px solid #c3e6cb; /* soft green border */
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.box-danger {
+  background-color: var(--danger);
+  border: 1px solid #f5c6cb; /* soft red border */
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+#popupModal {
+  width: 100%;
+  max-width: 900px !important;
+  margin: 0 auto;
+  display: block;
+}
+
+
+
+
+
+/* Other stuff */
+.Continue-button {
+  /* Add your otree next button styles here */
+  background-color: #007BFF;
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;               /* space between the two items */
+  max-width: 900px;        /* same as your .content-box */
+  margin: 0px auto;       /* center it and add vertical breathing room */
+  padding: 0 0px;         /* match the horizontal padding of .content-box */
+}
+
+#NextButton {
+  margin-left: auto;     /* push this button all the way to the right */
+}
+
+#NextButton {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+#NextButton:hover {
+  background-color: #28a745;   /* Bootstrap “success” green */
+  border-color: #28a745;
+  color: #fff;                 /* ensure text stays readable */
+}
+
+
+body {font-family: Arial, Helvetica, sans-serif;}
+
+
+
+
+.instructions-title {
+  font-weight: bold;
+  margin-bottom: 8px; /* Space between the title and buttons */
+  color: #333; /* Darker color for emphasis */
+}
+
+.Instructions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns items to the start of the container */
+  gap: 8px; /* Adds space between buttons */
+}
+
+
+
+
+#pie_chart {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Take full viewport height */
+}
+
+.qa-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+  }
+
+  .card-label {
+    color: black;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .q-label {
+    color: black;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  .radio-wrapper {
+    margin-top: 5px;
+  }
+  .card-main-image {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 5px;
+      border: 2px solid black; /* Black frame */
+    border-radius: 4px; /* Optional rounded corners */
+  }
+  .card-match-image {
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 15px;
+      border: 1px solid black; /* Black frame */
+    border-radius: 4px; /* Optional rounded corners */
+  }

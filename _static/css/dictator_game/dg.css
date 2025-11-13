@@ -1,0 +1,51 @@
+.btn-primary {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+.btn-primary:hover {
+  background-color: #388E3C;
+}
+
+.dg-grid {
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    "cardA cardC"
+    "cardB cardC";
+}
+@media(max-width:600px){
+  .dg-grid{grid-template-columns:1fr;
+           grid-template-areas:
+             "cardA" "cardB" "cardC" "cardD";}
+}
+.dg-card{
+  padding:16px;
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 2px 6px rgba(0,0,0,.12);
+}
+#cardA{grid-area:cardA}
+#cardB{grid-area:cardB;text-align:center}
+#cardC {
+  grid-area: cardC;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+#cardD{grid-area:cardD;font-weight:bold}
+
+.dg-box{
+  border-left:4px solid #ccc;
+  padding-left:8px;margin-top:8px;
+}
+.impact-on{border-color:#2e7d32}
+.image-on{border-color:#1565c0}
+.green{color:#2e7d32;font-weight:bold}
+.inputBox{width:100%;padding:6px;font-size:1rem}
+.caption{font-size:.85rem;color:#555}

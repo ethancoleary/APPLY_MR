@@ -1,0 +1,97 @@
+<!-- _templates/global/Task_instructions.html -->
+
+
+<div class="content-box box-task">
+    <div class="section-header text-center">
+    <h3>📋 The Emotion Recognition task</h3>
+    <hr class="section-divider">
+    </div>
+        
+
+        <div class="section-box box-neutral">
+            <div class="section-header">
+              <h4>🧱 Basics</h4>
+              <p>On your screen, you will see <strong>16 blue squares</strong>. Each square represents a hidden
+              card which can be revealed by clicking on it. Your task is to find as many matching pairs of cards
+            as possible within the time limit.</p>
+            </div>
+
+        </div>
+
+        <div class="section-box box-neutral">
+          <div class="section-header">
+            <h4>🕹️ How to play</h4>
+          <ol>
+              <li> Click on a square to reveal the information hidden on that card. </li>
+              <li> When you click on two cards that match, they remain uncovered and disappear. </li>
+              <li> If they do not match, they will be hidden again.</li>
+          </ol>
+          </div>
+
+        </div>
+
+        <div class="section-box box-info"><!--make the content variable by treatment-->
+          <div class="section-header">
+            <h4>🎯 What is a match</h4>
+            <p>The rule for matching pairs depends on the <strong>difficulty level</strong> of the cards.</p>
+            <ol>
+              <li><strong>Easy level:</strong> Each card shows either an image of a person
+                displaying an emotion (e.g. anger or pride) or an emotion
+                word (e.g. "Anger" or "Pride"). Two cards form a matching
+                  pair if the emotion conveyed in the image matches the emotion word.</li>
+              <li><strong>Hard level:</strong> Each card additionally displays an emoji (smile or frown).
+                  Two cards form a matching pair if the emotion conveyed in the image matches the emotion word
+                    and the emojis are the same.
+              </li>
+            </ol>
+          </div>
+
+        </div>
+
+
+
+        <div class="section-box box-calm">
+          <div class="section-header">    
+
+            <h4 class="text-center mt-4"> 🔍Examples</h4> <!--make the content variable by treatment-->
+              <div class="task-example text-center mb-4">
+                <img src="{{ static 'graphics/ERM_Match_Illustration.png' }}" style="max-width:100%;" alt="Example of non-match and match" />
+              </div>
+
+               
+              Above are two examples.
+              The first row of the image shows the procedure of uncovering a non-matching pair.
+              The second row of the image shows the procedure of uncovering a matching pair.
+          
+              </div>
+          </div>
+
+    <div class="section-box box-neutral">
+          <div class="section-header">
+            You will see one set of cards at a time.
+              Each set contains 8 pairs (16 cards).
+              After you find all 8 pairs, a new set appears.
+              You can play up to 7 sets per round (the maximum score is 56).
+              </div>
+        </div>
+
+          <div class="section-box box-info">
+          <div class="section-header">    
+
+          <h4> 🏆 Timing & Scoring:</h4>
+          <ul>
+            <li> Each round lasts <strong>two minutes</strong>. </li>
+            <li> You earn <strong>1 point</strong> per correct match.</li>
+            <li>The number of points you earn will affect your bonus.</li>
+          </ul>
+          <p class="text-center">Keep in mind that this task is influenced by your <strong>emotion recognition skills</strong>.</p><!--make this variable-->
+
+          </div>
+          </div>
+          
+
+
+
+    </div>
+  </div> 
+</div>     

@@ -1,0 +1,52 @@
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1.5em);
+  grid-gap: 0.5em;
+  justify-content: center;
+}
+
+.icon-grid .slot {
+  font-size: 1.5em;
+  color: #CCCCCC;         /* empty slots */
+}
+
+.icon-grid .slot.empty {
+  /* inherits lightgray and uses ○ */
+}
+
+.icon-grid .slot.male {
+  color: #0072B2;              /* male icons */
+}
+
+.icon-grid .slot.female {
+  color: #D55E00;            /* female icons */
+}
+
+
+/* a light box around the figure */
+.guess-figure {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* the title at the top */
+.guess-figure__title {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* your existing icon-grid sits inside */
+
+/* the bottom caption under icons */
+.guess-figure__caption {
+  margin-top: 0.75rem;
+  font-style: italic;
+  color: #333;
+}

@@ -1,0 +1,85 @@
+{{ block title }}
+
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<link rel="stylesheet" href="{{static 'css/mgslider.css'}}">
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/mgslider.js' }}"></script>
+<script>  
+window.onload = function() {
+  Completion_button('{{C.Completion_redirect}}')
+};
+</script>
+
+<div class="content-box box-info">
+<div class="section-header text-center">
+    <!-- Make titles dynamic basedon percentage? -->
+    <h3>Thank you for participating in this experiment</h3>
+    <hr class="section-divider">
+  </div>
+
+
+    <div class="section-box-nonhover box-white">
+    <div class="section-header text-center">
+  <strong>Bonus Payments for Rounds</strong>
+  </div>
+        <br>
+      <p>
+          The round selected for payment for you was <strong>Round {{ round }}</strong>.
+        </p>
+        {{ if round == 1}}
+        <p>
+            In Round 1, you scored <strong>{{ player.participant.R1_score }} points</strong>.
+            This means that your bonus for the task is £{{ bonus }}.
+        </p>
+        {{ endif }}
+        {{ if round == 2}}
+        <p>
+            In Round 2, you scored {{ player.participant.R2_score }} points.
+            If your score is higher than the other 3 participants in your group, you will earn £{{ bonus }}.
+            Once the other participants in your group have completed the experiment, this will be determined.
+        </p>
+        {{ endif }}
+        {{ if round == 3}}
+        <p>
+            In Round 3, you scored <strong>{{ player.participant.R3_score }} points</strong>.
+            {{ if player.participant.Choice == 1 }}
+              You chose Payment Rule <strong>A</strong>. Therefore, your bonus for the task is £{{ bonus }}.
+            {{ endif }}
+            {{ if player.participant.Choice == 2 }}
+              You chose Payment Rule <strong>B</strong>. Therefore, if you are selected by the
+              {{ selector_role }}, you will earn <strong>£{{ bonus }}</strong>.
+              Once the {{ selector_role }} has made their selection, this outcome will be determined.
+            {{ endif }}
+        </p>
+        {{ endif }}
+
+    </div>
+
+
+<div class="section-box-nonhover box-white">
+    <div class="section-header text-center">
+  <strong>Bonus Payments for Guess Pages</strong>
+  </div>
+    <br>
+    <p>
+          The page selected for payment for you was <strong>page {{ page }}</strong>.
+            Your bonus for your guess{{ if page == 1 }}es{{ endif }} will be determined once the experiment has concluded data collection.
+    </p>
+</div>
+    
+<center>
+Your final bonus payment will be paid out within 2 weeks. Please click the below button to be redirected back to Prolific.
+<br><br>
+<button type="button" onclick="Completion_button('{{C.Completion_redirect}}')" class="otree-btn-next btn btn-primary" id="redirectButton" class="">Complete study</button> 
+</center>
+
+</div>
+
+{{ endblock }}
+
+

@@ -1,0 +1,82 @@
+/* Style for the calculator */
+
+
+#calculator {
+    /* make everything centered */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 100%;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+#calculator #bonusResult{
+    display: flex; 
+    justify-content: center;
+    gap: 2px; 
+    margin-top: 2px;
+}
+
+#calculator input {
+    width: 100%;
+    text-align: right;
+}
+
+#calculator button {
+    padding: 5px 10px;
+    margin-top: 10px;
+}
+
+#bonusDisplay {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.chart-container {
+    width: 250px;
+    height: auto;
+}
+.graph-container {
+    width: 600px;
+    height: auto;
+}
+
+/* Extra style */
+
+#bonusResult {
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#bonusResult table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#bonusResult th {
+    background-color: #f0f0f0;
+    padding: 8px;
+    font-weight: bold;
+}
+
+#bonusResult td {
+    padding: 8px;
+}
+
+#bonusDisplay {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #2b8a3e;
+}
+
+.graph-container p {
+    font-size: 0.9em;
+    color: #555;
+}

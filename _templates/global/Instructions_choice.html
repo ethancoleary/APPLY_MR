@@ -1,0 +1,93 @@
+
+<style>
+    .center {
+      text-align: center;
+    }
+  </style>
+  
+  
+  <!-- Title -->
+  <div class="section-header text-center">
+    <h3>🎯 Choosing Your Payment Scheme</h3>
+    <hr class="section-divider">
+  </div>
+
+<div class="section-box box-warn">
+    <div class="section-header">
+            <h4>⚖️ Rules</h4>
+      <p>
+        <ul>
+          <li>You have 100 tokens.</li>
+          <li>Split them between Piece-rate ($0.10) and Tournament-rate ($0.60).</li>
+          <li>Tokens you allocate to Piece-rate pay you $0.10 each, guaranteed. </li>
+          <li>Tokens you allocate to Tournament-rate pay $0.60 each—but only if you perform better than your group. </li>
+        </ul>
+         
+            <table class="table table-bordered table-striped w-auto mx-auto">
+              <thead class="thead-light">
+                <tr>
+                  <th>Scheme</th>
+                  <th>Payout per token</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Piece-rate</td>
+                  <td>$0.10, always paid</td>
+                </tr>
+                <tr>
+                  <td>Tournament-rate</td>
+                  <td>$0.60, only if top of the group</td>
+                </tr>
+              </tbody>
+            </table>
+        
+      </p>
+    </div>
+  </div>
+
+        
+ <!-- Example calculation -->
+  <div class="section-box box-neutral">
+    <div class="section-header">
+      <h4>📊 Example</h4>
+      <p>
+        Let's say you allocate <strong>60</strong> tokens to the Tournament-rate and <strong>40</strong> tokens to the Piece-rate.
+        Then, per point you score, you could earn 4 cents from the Piece-rate (guaranteed) and 36 cents from the Tournament-rate (if you are the best peformer of the group).
+       
+            <div id="revealDetails">        
+
+                  Click  <button  type="button" class="otree-btn-next  btn-success">Here</button> to see where 4 and 36 cents come from.
+       </div>
+
+      </p>
+
+
+      <div id="hiddenarea" style="display: none;">
+
+             <ol>
+            <li>
+                <strong>Piece-rate part.</strong>40% of 10 cents = 4 cents. In other words, 40 tokens times 10 cents = $0.04
+            </li>
+            <li>
+              <strong>Tournament-rate part.</strong>60% of 60 cents = 36 cents. In other words, 60 tokens times 60 cents = $0.36
+            </li>
+        </ol>
+
+
+      </div>
+    
+    
+    
+      </div>
+  </div>
+
+
+  <script>
+  document.getElementById('revealDetails').addEventListener('click', () => {
+    // show the calculator area
+    document.getElementById('hiddenarea').style.display = 'block';
+    // hide the reveal button
+    document.getElementById('revealDetails').style.display = 'none';
+  });
+  </script>

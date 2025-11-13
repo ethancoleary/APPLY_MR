@@ -1,0 +1,74 @@
+{% extends "global/Page.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/dictator_game/dg.css' %}">
+<style>
+/* ---------- layout ---------- */
+.reveal-wrap   {max-width:660px;margin:40px auto;}
+.reveal-card   {background:#fff;border-radius:12px;
+                box-shadow:0 2px 6px rgba(0,0,0,.12);
+                padding:24px;text-align:center;}
+.peer-block    {background:#f0f8ff;border:1px solid #d0e7ff;
+                border-radius:8px;padding:16px;margin-bottom:24px;}
+.private-block {background:#ffeae6;border:1px solid #ffc4ba;
+                border-radius:8px;padding:16px;margin-bottom:24px;}
+.summary-block {background:#f5fff0;border:1px solid #d8ffd0;
+                border-radius:8px;padding:16px; margin-bottom:16px}
+
+.peer-code     {font-weight:600;}
+.num-highlight {font-weight:700;color:#2e7d32;}   /* same green as earlier */
+
+/* button (reuse the donate style) */
+.btn-donate    {background:#4CAF50;border:0;color:#fff;}
+.btn-donate:hover{background:#43a047;}
+</style>
+{% endblock %}
+
+{% block content %}
+<input type="hidden" id="id_browser"      name="browser">
+<input type="hidden" id="id_blur_count"   name="blur_count"  value="0">
+<input type="hidden" id="id_blur_log"     name="blur_log">
+<input type="hidden" id="id_blur_warned"  name="blur_warned" value="0">
+
+<!-- load data-quality script AFTER the hidden inputs -->
+<script src="{% static 'js/data_quality.js' %}"></script>
+
+<div class="reveal-wrap">
+
+  <div class="reveal-card">
+
+    {% if peer_code %}
+      <div class="peer-block">
+        <h4 class="mb-3">Your peer’s decision</h4>
+        <p>
+          Participant <span class="peer-code">{{ peer_code }}</span><br>
+          kept <span class="num-highlight">${{ peer_keep_amount }}</span><br>
+          AMF receives:
+          <span class="num-highlight">${{ peer_total_charity }}</span><br>
+          ( ${{ peer_sponsor_amt }} lead donor&nbsp;+
+            ${{ peer_you_amount }} peer )
+        </p>
+      </div>
+    {% else %}
+      <div class="private-block">
+        <h4 class="mb-2">Your decision remains private</h4>
+        <p>Your matched partner did not finish the task in time.</p>
+      </div>
+    {% endif %}
+
+    <div class="summary-block">
+      <h4 class="mb-3">Your payoff summary</h4>
+      <p>You keep:
+         <span class="num-highlight">${{ keep_amount }}</span></p>
+      <p>AMF receives:
+         <span class="num-highlight">${{ total_charity }}</span><br>
+         (${{ sponsor_amount }} lead donor +
+          ${{ you_amount }} you)</p>
+    </div>
+
+    {% next_button tag="button" class="btn btn-donate mt-4" %}
+  </div>
+
+</div>
+{% endblock %}
