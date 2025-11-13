@@ -5,7 +5,7 @@ SESSION_CONFIGS = [
 
          app_sequence=[
              'Intro_Round1',
-             'Round2_Round3',
+             'Selections',
              'Exit_Survey'
          ],
 
@@ -40,7 +40,7 @@ PARTICIPANT_FIELDS = [
     'Attention_passed', 'Attention_1', 'Attention_2', 'Attention_3',
     'Treatmentstring', 'Treatment', 'Gender', 'Choice',
     'Blur_count', 'Blur_log', 'Blur_warned', 'R1_score', 'R2_score', 'R3_score',
-    'round_for_payment', 'page_for_payment', 'R2_mix'
+    'round_for_payment', 'page_for_payment', 'R2_mix', 'incentivised_selection'
 
 ]
 SESSION_FIELDS = {

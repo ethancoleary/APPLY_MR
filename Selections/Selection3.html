@@ -1,0 +1,137 @@
+{{ block title }}
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/data_quality.js' }}"></script>
+
+<div class="content-box box-info">
+
+  <!-- Header -->
+  <div class="section-header text-center">
+    <h3>🤺 Round 2</h3>
+    <hr class="section-divider">
+  </div>
+
+  <!-- Intro & Timer -->
+  <div class="section-box-nonhover box-white">
+    <div class="section-header">
+      <p>
+       You will have <strong>2 minutes</strong> to find as many matching pairs as possible.
+      </p>
+      <p>
+        <strong>Your Group</strong><br>
+        For this round and all subsequent rounds, you will be <strong>matched with 3 other participants</strong>
+        to form a group. Your group consists of two female and two male Prolific users, including you. 
+      </p>
+
+      <!--<center>
+        <img src="{% static 'graphics/Your_group_neutral.png' %}" height="250px"><br>
+      </center>-->
+      <p>
+        <strong>Mixes</strong><br>
+        For this round you will have to find matching pairs in sets which are drawn from one of two mixes.
+        <ol>
+          <strong>Mix 1:</strong> 6 easy and 2 hard matching pairs.
+        </ol>
+        <ol>
+          <strong>Mix 2:</strong> 2 easy and 6 hard matching pairs.
+        </ol>
+        <p style="text-align: center;"><strong>In round 2, you will face sets either only from Mix 1 or only from Mix 2.</strong></p>
+      </p>
+      <p>
+        The computer will conduct the equivalent of a coin flip for each participant in your group to determine whether
+        they face sets from <strong>Mix 1</strong> or <strong>Mix 2</strong>.
+      </p>
+    </div>
+  </div>
+
+  <div class="section-box-nonhover box-calm">
+    <div class="section-header">
+        A visual example of these mixes is displayed below. The exact placement of cards may not represent the true
+        positioning of the cards in the round.
+        <div class="content-box box-white" style="max-width: 600px">
+    <center>
+        <img src="{{ static 'graphics/Mixes.png' }}" style="max-width:100%; height: 300px;" alt="round 1" />
+    </center>
+    </div>
+    </div>
+  </div>
+
+  <!-- Payment Rule Change -->
+  <div class="section-box box-warn">
+    <div class="section-header">
+      <h4>💰 Payment rule for round 2</h4>
+
+        If this round is randomly chosen for your bonus, your payment will depend on both <strong>your score</strong> and your <strong>group’s scores</strong>.
+
+      <ul>
+        <li>You will earn £{{ tournament_rate1 }} per point you score (i.e. matching pair you find)
+          <strong>if you have the highest score in the group</strong>.</li><!--make this dynamic-->
+        <li>You will earn £0.00 for this round otherwise</li>
+        <li>If there is a tie, the winner will be chosen randomly.</li>
+      </ul>
+      You will not be informed of your ranking until the end of the study.<br><br>
+      <p style="text-align:center;"><em >Please do not use calculators or AI tools during this study.</em></p>
+    </div>
+  </div>
+
+  <!-- Form Fields -->
+  <form>
+    {% for field in form %}
+      {% if field.name not in hidden_fields %}
+        {{ formfield field.name }}
+      {% endif %}
+    {% endfor %}
+    <div style="display:none">
+      {% for field in form %}
+        {% if field.name in hidden_fields %}
+          {{ formfield field.name }}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </form>
+
+  <!-- Instruction & Next Buttons -->
+  <div class="buttons-container">
+    <div class="instructions-box">
+      <p class="instructions-title">Instruction Buttons</p>
+      <div class="Instructions">
+        <a onclick="open_modal(1)" class="otree-btn-next btn btn-primary">Study Instructions</a>
+        <a onclick="open_modal(2)" class="otree-btn-next btn btn-primary">Task Instructions</a>
+      </div>
+    </div>
+    <button id="NextButton" class="otree-btn-next btn btn-primary">Start round 2</button>
+  </div>
+
+</div>
+</div>
+
+<!-- Modals -->
+<div id="myModal2" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Task Instructions</h2>
+      <span class="close" onclick="span_click(2)">&times;</span>
+    </div>
+    <div class="modal-body">
+      {{ include Task_instructions }}
+    </div>
+  </div>
+</div>
+
+<div id="myModal1" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Study Instructions</h2>
+      <span class="close" onclick="span_click(1)">&times;</span>
+    </div>
+    <div class="modal-body">
+      {{ include Instructions_path }}
+    </div>
+  </div>
+</div>
+{{ endblock }}

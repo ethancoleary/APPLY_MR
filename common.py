@@ -130,9 +130,8 @@ class CommonConstants(BaseConstants):
     Reject_redirect = "https://www.wikipedia.org/" #TODO: adjust reject redirect
     Return_redirect = "https://www.wikipedia.org/" #TODO: adjust return redirect
     
-    Instructions_male_path = "_templates/global/Instructions_male.html"
-    Instructions_female_path = "_templates/global/Instructions_female.html"
-    Instructions_neutral_path = "_templates/global/Instructions_neutral.html"
+    Instructions_Manager_MM_path = "_templates/global/Instructions_Manager_MM.html"
+    Instructions_Manager_ER_path = "_templates/global/Instructions_Manager_ER.html"
 
     Task_instructions_path = "_templates/global/Task_instructions.html"
     Task_instructions_MM_path = "_templates/global/Task_instructions_MM.html"
@@ -153,16 +152,10 @@ class MyBasePage(Page):
     def vars_for_template(player):
  # --- Instructions path logic (updated) ---
         # Use neutral instructions if treatment hides gender (1 or 9).
-        if player.participant.Treatment in (1, 9):
-            Instructions_path = CommonConstants.Instructions_neutral_path  # points to Instructions_neutral.html
-        else:
-            # Otherwise, choose by indicated gender; default to female when empty/other.
-            g = (player.participant.Gender or '').strip().lower()
-            if g == 'male':
-                Instructions_path = CommonConstants.Instructions_male_path
-            else:
-                Instructions_path = CommonConstants.Instructions_female_path
-        # --- end updated block ---
+
+
+
+
 
        # if player.participant.Gender == '':
         #    Instructions_path = CommonConstants.Instructions_female_path
@@ -172,8 +165,10 @@ class MyBasePage(Page):
 
         if player.participant.Treatment > 8:
             Task_path = CommonConstants.Task_instructions_ER_path
+            Instructions_path = CommonConstants.Instructions_Manager_ER_path
         else:
             Task_path = CommonConstants.Task_instructions_MM_path
+            Instructions_path = CommonConstants.Instructions_Manager_MM_path
         
         piece_rate = CommonConstants.Piece_rate
         tournament_rate1 = CommonConstants.Tournament_rate1 * piece_rate
